@@ -24,10 +24,10 @@ print(" ".join(sorted({json.load(open(f))["version"] for f in fs})))')
 [ "$(echo "$versions" | wc -w)" -eq 1 ] && ok "one version ($versions)" || bad "versions differ: $versions"
 
 # 3. Claude Code plugin validates.
-if command -v claude >/dev/null 2>&1; then
+if command -v claude >/dev/null 2>&1 && claude plugin validate --help >/dev/null 2>&1; then
   claude plugin validate "$root" >/dev/null 2>&1 && ok "claude plugin validate" || bad "claude plugin validate"
 else
-  skip "claude plugin validate (no claude CLI)"
+  skip "claude plugin validate (no claude CLI with plugin commands)"
 fi
 
 # 4. Frontmatter parses and names match folders.
@@ -70,7 +70,7 @@ second=$(cd "$repo" && bash "$root/skills/init/init.sh" --all | grep -c '^added'
 
 # 8. Branch guard, Claude Code and Cursor formats.
 guard="$repo/scripts/heracles/branch-guard.sh"
-( cd "$repo" && git commit -q --allow-empty -m init )
+( cd "$repo" && git -c user.name=test -c user.email=test@example.com commit -q --allow-empty -m init )
 claude_in() { printf '{"cwd":"%s"%s,"tool_input":{"command":"%s"}}' "$repo" "$2" "$1"; }
 cursor_in() { printf '{"hook_event_name":"beforeShellExecution","cwd":"%s","command":"%s"}' "$repo" "$1"; }
 expect() { local want=$1 label=$2; shift 2; "$@" >/dev/null 2>&1; local got=$?; [ "$got" = "$want" ] && ok "guard: $label" || bad "guard: $label (exit $got, wanted $want)"; }
