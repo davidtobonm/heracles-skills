@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Stop hook: when the working tree changed, run the docs check and hand failures back to Claude.
-# It does nothing in a project without docs/sprints/ (one that never ran /heracles:init).
+# It does nothing in a project without docs/sprints/ (one that never ran the init skill).
 # It lets the stop through when Claude is already continuing because of this hook, and when
 # Claude's last message ends with a question for the humans (an interview round is waiting).
 here=$(cd "$(dirname "$0")" && pwd)

@@ -7,7 +7,7 @@ GitHub renders fenced `mermaid` blocks in Markdown. Agents write flowcharts, seq
 Parse check without a browser (needs `npm i -D mermaid jsdom` once in the project; the script loads them from the project's `node_modules`):
 
 ```bash
-node "${CLAUDE_PLUGIN_ROOT}/scripts/check-mermaid.mjs" docs
+node "scripts/heracles/check-mermaid.mjs" docs
 ```
 
 The script finds every fenced `mermaid` block and every `.mmd` file under the folder and fails on the first syntax error in each.

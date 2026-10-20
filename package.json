@@ -1,0 +1,33 @@
+{
+  "name": "heracles-skills",
+  "version": "0.2.0",
+  "description": "A spec-driven, two-track workflow for coding agents: design the product and architecture with the humans deciding, then plan, build, verify and ship sprints with parallel implementer subagents in worktrees and independent checks at each step.",
+  "license": "MIT",
+  "author": "David Tobón (https://github.com/davidtobonm)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidtobonm/heracles-skills.git"
+  },
+  "keywords": [
+    "pi-package",
+    "workflow",
+    "spec-driven",
+    "sprints",
+    "subagents",
+    "worktrees",
+    "code-review",
+    "tdd",
+    "adr",
+    "agent-skills"
+  ],
+  "files": [
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "skills": [
+      "./skills"
+    ]
+  }
+}

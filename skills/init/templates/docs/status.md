@@ -4,7 +4,7 @@ What is active now and what waits on the owners. Finished items are removed, not
 
 ## Active work
 
-None yet. Start with `/heracles:define-product`, then follow `docs/backlog.md`.
+None yet. Start with `/define-product`, then follow `docs/backlog.md`.
 
 ## Waiting on the owners
 

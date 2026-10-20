@@ -1,6 +1,6 @@
 ---
 name: arena
-description: "Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it. Called by design-architecture for one-way decisions, or when the user types /heracles:arena or says 'arena this'."
+description: "Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it. Called by design-architecture for one-way decisions, or when the user types /arena or says 'arena this'."
 ---
 
 # Arena
@@ -18,13 +18,13 @@ Every candidate gets the same prompt, so the prompt is the contract.
 
 ## Phase B: Fan out
 
-Spawn all N subagents in one message with the Agent tool and `run_in_background: true`, each with the task, the path to the shared grounding, its own output path, and instructions to produce the artifact and a short rationale naming the alternatives it considered and what it rejected.
+Spawn all N subagents at once, in the background if your agent supports it, each with the task, the path to the shared grounding, its own output path, and instructions to produce the artifact and a short rationale naming the alternatives it considered and what it rejected.
 
 If a candidate produces no output, proceed with N-1 and note the dropout.
 
 ## Phase C: Cross-judge
 
-After all Phase B candidates complete, spawn one judge with `subagent_type: heracles:reviewer` (read-only, no MCP tools), `model: opus` and `effort: high`, and put the rubric in its prompt. It sees the rubric and the candidates by path label (not by model), scores each criterion, and recommends a base with rationale. It runs in parallel with your reading in Phase D. Don't spawn it while candidates are still writing.
+After all Phase B candidates complete, spawn one judge as the `reviewer` subagent (read-only, no MCP tools), `model: opus` and `effort: high`, and put the rubric in its prompt. It sees the rubric and the candidates by path label (not by model), scores each criterion, and recommends a base with rationale. It runs in parallel with your reading in Phase D. Don't spawn it while candidates are still writing.
 
 ## Phase D: Pick a base
 

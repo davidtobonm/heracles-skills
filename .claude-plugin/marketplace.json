@@ -3,7 +3,7 @@
   "owner": {
     "name": "David Tobón"
   },
-  "description": "The heracles plugin: a spec-driven, two-track agentic workflow for Claude Code.",
+  "description": "The heracles plugin: a spec-driven, two-track workflow for coding agents.",
   "plugins": [
     {
       "name": "heracles",

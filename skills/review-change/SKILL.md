@@ -1,6 +1,6 @@
 ---
 name: review-change
-description: Review a branch's changes against its sprint spec and this repo's rules with independent reviewer subagents, give a 1-5 merge score, and optionally fix and re-review in a bounded loop. Use for /heracles:review-change, before opening or merging a PR, when asked to "review this", or when ship-change calls it.
+description: Review a branch's changes against its sprint spec and this repo's rules with independent reviewer subagents, give a 1-5 merge score, and optionally fix and re-review in a bounded loop. Use for /review-change, before opening or merging a PR, when asked to "review this", or when ship-change calls it.
 argument-hint: "[base ref] [--fix]"
 ---
 
@@ -20,7 +20,7 @@ Read the sprint `spec.md` and the plan tasks this branch covers (from the branch
 
 ## 3. Spawn the reviewers
 
-In one message, spawn these with the Agent tool, `subagent_type: heracles:reviewer`. Fill [REVIEWER-PROMPT.md](REVIEWER-PROMPT.md) for each.
+In one message, spawn these as `reviewer` subagents. Fill [REVIEWER-PROMPT.md](REVIEWER-PROMPT.md) for each.
 
 - Spec reviewer (`model: sonnet`). Does the diff do what the stories and acceptance criteria ask? Lists what is missing or partial, what was built that nobody asked for, and what looks implemented but wrong. Quotes the spec line for each finding.
 - Standards reviewer (`model: opus`). Checks the diff against `AGENTS.md`, the path rules in `.claude/rules/` that match the changed files (if the repo has any), and the lenses in [RUBRIC.md](RUBRIC.md).

@@ -1,6 +1,6 @@
 # Choosing the model and effort for a task
 
-A task's weight is how much judgment it needs and what breaks if it goes wrong. The weight picks the model. Model names are Claude Code aliases (`haiku`, `sonnet`, `opus`), so they follow the current model of each tier.
+A task's weight is how much judgment it needs and what breaks if it goes wrong. The weight picks the model. Model names are Claude Code aliases (`haiku`, `sonnet`, `opus`). In other agents, read them as the small, medium and large model you have; an agent that cannot set a model per subagent ignores these fields. They follow the current model of each tier.
 
 | The task | Model | Effort |
 |---|---|---|

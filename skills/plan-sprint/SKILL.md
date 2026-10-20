@@ -1,13 +1,13 @@
 ---
 name: plan-sprint
-description: Plan the next delivery sprint. Takes stories from the story map, interviews the owners until each has checkable acceptance criteria, has to-spec write the sprint spec and to-tickets write bounded tasks, groups them in waves (with scope, seams, verify command, model and effort per task), has a separate plan checker review it, and registers the sprint. Use for /heracles:plan-sprint or "plan the next sprint".
+description: Plan the next delivery sprint. Takes stories from the story map, interviews the owners until each has checkable acceptance criteria, has to-spec write the sprint spec and to-tickets write bounded tasks, groups them in waves (with scope, seams, verify command, model and effort per task), has a separate plan checker review it, and registers the sprint. Use for /plan-sprint or "plan the next sprint".
 argument-hint: "[backlog item or story ids]"
 disable-model-invocation: true
 ---
 
 # Plan a sprint
 
-A sprint is one folder, `docs/sprints/S<NN>-<slug>/`, with `spec.md` (what and why), `plan.md` (tasks in waves) and `log.md` (what happened). The spec is written before any code. Design work goes through `/heracles:define-product` or `/heracles:design-architecture`, not here.
+A sprint is one folder, `docs/sprints/S<NN>-<slug>/`, with `spec.md` (what and why), `plan.md` (tasks in waves) and `log.md` (what happened). The spec is written before any code. Design work goes through `/define-product` or `/design-architecture`, not here.
 
 Arguments can be plain language ("the worker fix", "T1", "the current sprint"). Resolve them against `docs/status.md`, the sprint folders in `docs/sprints/` and `git branch -a`. If more than one thing matches, list the matches and ask which one. If nothing matches, say so and stop.
 
@@ -32,15 +32,15 @@ Read the stories in `docs/product/stories.md` that the goal covers, the glossary
 
 ## 4. Interview
 
-Call the Skill tool with "heracles:grilling" until every story has acceptance criteria the owners agree with, the out-of-scope list is explicit, and contract changes are known. Call "heracles:domain-modeling" for new terms and "heracles:record-decision" for decisions that pass the ADR test.
+Use the `grilling` skill until every story has acceptance criteria the owners agree with, the out-of-scope list is explicit, and contract changes are known. Call "domain-modeling" for new terms and "record-decision" for decisions that pass the ADR test.
 
 ## 5. Write the spec
 
-Call the Skill tool with "heracles:to-spec" and the path of `spec.md`. Stories keep their ids from the story map (`ACC-03`); a new story gets an id in `stories.md` first.
+Use the `to-spec` skill and the path of `spec.md`. Stories keep their ids from the story map (`ACC-03`); a new story gets an id in `stories.md` first.
 
 ## 6. Write the plan
 
-1. Copy [PLAN-TEMPLATE.md](PLAN-TEMPLATE.md) to `plan.md`, then call the Skill tool with "heracles:to-tickets" and the paths of `spec.md` and `plan.md`. It writes vertical-slice tasks with blockers, `Seams` and `Verify`, after the owners approve the breakdown.
+1. Copy [PLAN-TEMPLATE.md](PLAN-TEMPLATE.md) to `plan.md`, then use the `to-tickets` skill and the paths of `spec.md` and `plan.md`. It writes vertical-slice tasks with blockers, `Seams` and `Verify`, after the owners approve the breakdown.
 2. Then fill the delivery fields:
    - `Scope` names the modules or folders where the task may write. Two tasks in the same wave never share scope.
    - A task's wave is one more than the highest wave of the tasks in its `Blocked by` line. A task with no blockers is in wave 1.
@@ -50,12 +50,12 @@ Call the Skill tool with "heracles:to-spec" and the path of `spec.md`. Stories k
 
 ## 7. Check the plan
 
-Spawn the `heracles:plan-checker` subagent with the paths of `spec.md` and `plan.md`. Fix what it reports and run it again, at most twice. Write its final verdict as a dated line in `log.md`, for example `- 2026-10-21. Plan checker: PASS.`; `run-sprint` looks for that line. Then show the owners the stories, the waves and the tasks as a numbered list, and iterate until they approve.
+Spawn the `plan-checker` subagent with the paths of `spec.md` and `plan.md`. Fix what it reports and run it again, at most twice. Write its final verdict as a dated line in `log.md`, for example `- 2026-10-21. Plan checker: PASS.`; `run-sprint` looks for that line. Then show the owners the stories, the waves and the tasks as a numbered list, and iterate until they approve.
 
 ## 8. Register and commit
 
 1. Set the sprint's row in `docs/sprints/README.md` to `open`, make it active in `docs/status.md`, fill the `Sprint` column of its stories in `stories.md`, and remove the item from `docs/backlog.md`.
-2. Run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/check_docs.py"`.
+2. Run `python3 "scripts/heracles/check_docs.py"`.
 3. Commit on `dev` as `docs(sprint): plan S<NN>` and push it with `git push origin dev`. `run-sprint` starts every task branch from `dev`.
 
-Then tell the owners the next command: `/heracles:run-sprint S<NN>` to build with parallel implementers, or `/heracles:build-task S<NN> T1` to build one task at a time in this session.
+Then tell the owners the next command: `/run-sprint S<NN>` to build with parallel implementers, or `/build-task S<NN> T1` to build one task at a time in this session.

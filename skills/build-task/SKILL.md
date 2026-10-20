@@ -1,6 +1,6 @@
 ---
 name: build-task
-description: Build one planned sprint task end to end on its own branch. Loads the task and its stories, isolates the work in a worktree, builds test-first (or settles a design decision with the owners), proves each acceptance criterion with evidence, runs the checks, commits and reports. Use for /heracles:build-task <sprint> <task>, or when an implementer subagent receives a task brief.
+description: Build one planned sprint task end to end on its own branch. Loads the task and its stories, isolates the work in a worktree, builds test-first (or settles a design decision with the owners), proves each acceptance criterion with evidence, runs the checks, commits and reports. Use for /build-task <sprint> <task>, or when an implementer subagent receives a task brief.
 argument-hint: "<sprint id> <task id>"
 ---
 
@@ -35,21 +35,21 @@ A task with a `Decides:` line is a design task; go to 3b. Any other task is a bu
 
 ### 3a. Build test-first
 
-Follow the `heracles:tdd` skill (call it with the Skill tool unless it is already loaded). Use the seams in the task's `Seams` line. Stay inside the task's `Scope`. If the work needs to leave the scope or change a contract, stop and report instead.
+Follow the `tdd` skill (load it unless it is already loaded). Use the seams in the task's `Seams` line. Stay inside the task's `Scope`. If the work needs to leave the scope or change a contract, stop and report instead.
 
 Run the typechecker and single test files as you go, and the whole suite once at the end.
 
 ### 3b. Settle a design decision
 
-1. Call the Skill tool with "heracles:grilling" on the decision in the `Decides:` line, with the owners it names.
-2. Call "heracles:record-decision" with the owner who decided. An ADR the owners have not decided stays `proposed`, and the task stays open.
-3. Update the living doc the decision shapes (`docs/product/`, `docs/architecture/` or `docs/contracts/`), and call "heracles:draw-diagram" when the doc has a diagram.
+1. Use the `grilling` skill on the decision in the `Decides:` line, with the owners it names.
+2. Call "record-decision" with the owner who decided. An ADR the owners have not decided stays `proposed`, and the task stays open.
+3. Update the living doc the decision shapes (`docs/product/`, `docs/architecture/` or `docs/contracts/`), and call "draw-diagram" when the doc has a diagram.
 
 ## 4. Prove it
 
 For a build task, capture evidence for each acceptance criterion it covers, as [EVIDENCE.md](EVIDENCE.md) describes. A bug fix captures the failure before the fix. Mark each criterion `passed`, `failed` or `untested`, and never leave one out silently.
 
-For a design task, the evidence is the accepted ADR's path, the updated doc and a passing `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/check_docs.py"`.
+For a design task, the evidence is the accepted ADR's path, the updated doc and a passing `python3 "scripts/heracles/check_docs.py"`.
 
 ## 5. Check and commit
 
@@ -58,7 +58,7 @@ For a design task, the evidence is the accepted ADR's path, the updated doc and 
 
 ## 6. Close out
 
-- When a human ran `/heracles:build-task`, tick the task in `plan.md` and add one dated line to `log.md`, both inside the task worktree, and commit them with the task so the tick ships in the PR. Then tell the human to run `/heracles:ship-change task/<sprint>-<task>`, which opens a PR into `dev`.
+- When a human ran `/build-task`, tick the task in `plan.md` and add one dated line to `log.md`, both inside the task worktree, and commit them with the task so the tick ships in the PR. Then tell the human to run `/ship-change task/<sprint>-<task>`, which opens a PR into `dev`.
 - When you are a subagent, or `run-sprint` called you, do not edit `plan.md`, `log.md` or `docs/status.md`. The orchestrator updates them from your report, so parallel tasks never write the same file.
 
 ## 7. Report

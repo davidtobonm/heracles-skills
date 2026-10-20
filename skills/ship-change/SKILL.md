@@ -1,6 +1,6 @@
 ---
 name: ship-change
-description: "Take a finished branch to a merge-ready pull request: a task or design branch into dev, or dev into main as a release. Rebases, reruns the checks, runs the review loop, writes the PR from the sprint spec and evidence, opens it, and watches CI until green. The main session may merge PRs into dev when the human asked it to; a human merges every release into main. Use for /heracles:ship-change <branch> or \"open the PR\" once a task or design branch, or dev, is ready."
+description: "Take a finished branch to a merge-ready pull request: a task or design branch into dev, or dev into main as a release. Rebases, reruns the checks, runs the review loop, writes the PR from the sprint spec and evidence, opens it, and watches CI until green. The main session may merge PRs into dev when the human asked it to; a human merges every release into main. Use for /ship-change <branch> or \"open the PR\" once a task or design branch, or dev, is ready."
 argument-hint: "<branch>"
 disable-model-invocation: true
 ---
@@ -30,7 +30,7 @@ Resolve conflicts by keeping both intents. Conflicts in `plan.md` and `log.md` b
 
 ## 3. Review
 
-Call the Skill tool with "heracles:review-change" and the arguments `origin/<base> --fix`. Continue only with a score of 4 or 5 and no Act on items. Otherwise stop and report what is open.
+Use the `review-change` skill and the arguments `origin/<base> --fix`. Continue only with a score of 4 or 5 and no Act on items. Otherwise stop and report what is open.
 
 ## 4. Write the PR
 
@@ -45,7 +45,7 @@ Title in Conventional Commits form, `type(scope): subject`, no trailing period. 
 - `## Verification` with the evidence for each criterion (`passed`, `failed`, `untested`), linking `docs/sprints/<sprint>/evidence/`. For UI criteria, include the `State | Before | After` table from the evidence file, and ask the human to drag in the images from `.artifacts/<task>/`.
 - `## Review` with the score and the Consider items for the human to decide.
 
-Call the Skill tool with "heracles:unslop" on the title and body before you post them.
+Use the `unslop` skill on the title and body before you post them.
 
 ## 5. Open and watch
 
@@ -62,4 +62,4 @@ Call the Skill tool with "heracles:unslop" on the title and body before you post
 1. For a PR into `dev` that you were asked to merge: wait for green checks and a review score of 4 or 5, then `gh pr merge <number> --squash --delete-branch`. The heracles branch guard hook allows this only for PRs into `dev`.
 2. For a task branch, remove its worktree and branch: `git worktree remove .worktrees/<sprint>-<task>` and `git branch -d task/<sprint>-<task>`. The next task starts from the updated `dev`.
 3. For a release merged into `main`, watch the deploy workflow with `gh run watch`, then run the smoke check from `AGENTS.md` against the deployed service. Never touch real user data. Post the result as a PR comment with `gh pr comment`.
-4. After a release, bring `dev` level with `main` and record it: `git switch dev && git pull --ff-only && git merge --ff-only origin/main`, update `docs/status.md`, commit it as `docs(status): release <date>`, and `git push origin dev`. Then tell the human to run `/heracles:close-sprint` for each sprint in the release.
+4. After a release, bring `dev` level with `main` and record it: `git switch dev && git pull --ff-only && git merge --ff-only origin/main`, update `docs/status.md`, commit it as `docs(status): release <date>`, and `git push origin dev`. Then tell the human to run `/close-sprint` for each sprint in the release.

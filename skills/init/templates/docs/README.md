@@ -20,5 +20,5 @@ Rules for writing docs:
 - Say each thing once. What the code already says (a list, a schema, what a function does) is not repeated; name the file or symbol instead.
 - A rule carries its reason in one sentence. Without the reason, nobody dares remove the rule later.
 - A decision is written twice. The rule that stays goes in the living doc. The long why, with the rejected options, goes in an ADR.
-- Diagrams are text (Mermaid or LikeC4) next to the sentence they support. See the `heracles:draw-diagram` skill.
-- The heracles docs check (`scripts/check_docs.py` in the plugin) checks links, indexes and line caps. Its Stop hook runs it when files changed.
+- Diagrams are text (Mermaid or LikeC4) next to the sentence they support. See the `draw-diagram` skill.
+- The heracles docs check (`scripts/heracles/check_docs.py`) checks links, indexes and line caps. In Claude Code a Stop hook runs it when files changed; elsewhere, run it before you finish.

@@ -2,7 +2,7 @@
 
 What the product is, for whom, and the product rules that hold today, each with its reason. A rule that changes is changed here; the long why goes in an ADR.
 
-Status: empty until `/heracles:define-product` runs.
+Status: empty until `/define-product` runs.
 
 ## What it is and for whom
 

@@ -1,0 +1,6 @@
+{
+  "name": "heracles",
+  "version": "0.2.0",
+  "description": "A spec-driven, two-track workflow for coding agents: design the product and architecture with the humans deciding, then plan, build, verify and ship sprints with parallel implementer subagents in worktrees and independent checks at each step.",
+  "contextFileName": "GEMINI.md"
+}

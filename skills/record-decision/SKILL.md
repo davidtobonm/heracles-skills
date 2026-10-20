@@ -34,4 +34,4 @@ The humans decide and you record. A decision about stored data, a public contrac
 
 ## Done when
 
-The file exists, its row is in the index, every place it shapes links to it, and `Decided by` names a person or the ADR is `proposed` and listed in `docs/status.md`. The heracles docs check (`python3 "${CLAUDE_PLUGIN_ROOT}/scripts/check_docs.py"`) passes.
+The file exists, its row is in the index, every place it shapes links to it, and `Decided by` names a person or the ADR is `proposed` and listed in `docs/status.md`. The heracles docs check (`python3 "scripts/heracles/check_docs.py"`) passes.

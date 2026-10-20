@@ -1,6 +1,6 @@
 ---
 name: define-product
-description: Define or change what the product is. Interviews the owners and writes the product definition, the glossary, the user story map with story ids, and the ordered backlog. Use for /heracles:define-product, at the start of a project, or when a product rule, a user role or the scope of an epic changes.
+description: Define or change what the product is. Interviews the owners and writes the product definition, the glossary, the user story map with story ids, and the ordered backlog. Use for /define-product, at the start of a project, or when a product rule, a user role or the scope of an epic changes.
 argument-hint: "[topic to change, or empty for the full definition]"
 disable-model-invocation: true
 ---
@@ -19,7 +19,7 @@ Read `docs/product/product.md`, `docs/product/glossary.md`, `docs/product/storie
 
 ## 2. Interview
 
-Call the Skill tool with "heracles:grilling" and with "heracles:domain-modeling". Walk this tree in order; skip a branch the owners already settled in the docs.
+Use the `grilling` skill and with "domain-modeling". Walk this tree in order; skip a branch the owners already settled in the docs.
 
 1. Users and roles: who uses the product, who pays, who approves, who only receives results.
 2. The problem: what a user does today without the product, in their words, with one real example.
@@ -28,7 +28,7 @@ Call the Skill tool with "heracles:grilling" and with "heracles:domain-modeling"
 5. Rules: each product rule with its reason. Confirm or drop each rule carried from an earlier version in `product.md`.
 6. Success: how the owners will know it works (a number, a user outcome).
 
-When an answer is a decision that passes the ADR test (for example "exports never include deleted records"), call the Skill tool with "heracles:record-decision" with the owner who decided.
+When an answer is a decision that passes the ADR test (for example "exports never include deleted records"), use the `record-decision` skill with the owner who decided.
 
 ## 3. Write
 
@@ -39,6 +39,6 @@ When an answer is a decision that passes the ADR test (for example "exports neve
 
 ## 4. Confirm
 
-Show the owners the changed rules, the new stories and the backlog order as numbered lists. Iterate until they approve. Then run `python3 "${CLAUDE_PLUGIN_ROOT}/scripts/check_docs.py"`.
+Show the owners the changed rules, the new stories and the backlog order as numbered lists. Iterate until they approve. Then run `python3 "scripts/heracles/check_docs.py"`.
 
-Commit on the `design/product-<topic>` branch as `docs(product): <what was decided>`, push it, and tell the owners to run `/heracles:ship-change design/product-<topic>`. The PR goes into `dev`. Implementers only see decisions merged there.
+Commit on the `design/product-<topic>` branch as `docs(product): <what was decided>`, push it, and tell the owners to run `/ship-change design/product-<topic>`. The PR goes into `dev`. Implementers only see decisions merged there.

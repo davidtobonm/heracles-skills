@@ -16,7 +16,7 @@ Evidence lets a human check a claim in one minute without trusting the agent. Pi
 Playwright runs from the shell, so no agent needs a browser MCP tool.
 
 1. Write or extend a Playwright spec next to the web tests that opens the app in a seeded demo or test environment, walks to each state the criterion names, and calls ``page.screenshot({ path: `${process.env.SHOT_DIR}/<state>.png` })``. Use the same state names before and after.
-2. Run `bash "${CLAUDE_PLUGIN_ROOT}/scripts/before-after.sh" <base> <spec> <task>`. The base is `origin/dev` for a task and `origin/main` for a release. It checks out the base in a temporary worktree, takes the "before" shots there, then the "after" shots in the current tree.
+2. Run `bash "scripts/heracles/before-after.sh" <base> <spec> <task>`. The base is `origin/dev` for a task and `origin/main` for a release. It checks out the base in a temporary worktree, takes the "before" shots there, then the "after" shots in the current tree.
 3. Look at every pair yourself before you mark the criterion `passed`. A blank page, an error overlay or a login screen is a failure, not evidence.
 4. List the pairs in `evidence/<task>.md` as a table with columns `State | Before | After`, using the file names. `ship-change` copies that table into the PR, and a human drags the images in.
 

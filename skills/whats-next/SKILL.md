@@ -1,6 +1,6 @@
 ---
 name: whats-next
-description: Say where the project stands and which command to run next, from docs/status.md, the active sprint plan and the backlog. Use for /heracles:whats-next, when a session starts, after a pause, or when someone asks "what's next" or "where are we".
+description: Say where the project stands and which command to run next, from docs/status.md, the active sprint plan and the backlog. Use for /whats-next, when a session starts, after a pause, or when someone asks "what's next" or "where are we".
 ---
 
 # What's next
@@ -13,6 +13,6 @@ description: Say where the project stands and which command to run next, from do
    - What waits on the owners (proposed ADRs, questions, approvals, commits to push).
    - One recommended next command, taken from the Workflow table in `AGENTS.md`, with a one-line reason.
 
-If `docs/status.md` does not exist, the repo is not set up for this workflow; recommend `/heracles:init` and stop.
+If `docs/status.md` does not exist, the repo is not set up for this workflow; recommend `/init` and stop.
 
 Do not start the work. The human picks.

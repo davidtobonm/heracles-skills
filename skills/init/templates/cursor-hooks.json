@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeShellExecution": [
+      {
+        "command": "bash -c 'cd \"$(git rev-parse --show-toplevel)\" && bash scripts/heracles/branch-guard.sh'"
+      }
+    ]
+  }
+}
