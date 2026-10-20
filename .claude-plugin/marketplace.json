@@ -1,0 +1,14 @@
+{
+  "name": "heracles-skills",
+  "owner": {
+    "name": "David Tobón"
+  },
+  "description": "The heracles plugin: a spec-driven, two-track agentic workflow for Claude Code.",
+  "plugins": [
+    {
+      "name": "heracles",
+      "source": "./",
+      "description": "A spec-driven, two-track agentic workflow: design track, delivery track with parallel implementers in worktrees, independent review and verification, and a dev to main release model."
+    }
+  ]
+}

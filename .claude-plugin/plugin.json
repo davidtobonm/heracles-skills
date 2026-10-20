@@ -1,0 +1,22 @@
+{
+  "name": "heracles",
+  "displayName": "Heracles",
+  "version": "0.1.0",
+  "description": "A spec-driven, two-track agentic workflow for Claude Code: design the product and architecture with the humans deciding, then plan, build, verify and ship sprints with parallel implementer subagents in worktrees and independent checks at each step.",
+  "author": {
+    "name": "David Tobón",
+    "url": "https://github.com/davidtobonm"
+  },
+  "repository": "https://github.com/davidtobonm/heracles-skills",
+  "license": "MIT",
+  "keywords": [
+    "workflow",
+    "spec-driven",
+    "sprints",
+    "subagents",
+    "worktrees",
+    "code-review",
+    "tdd",
+    "adr"
+  ]
+}
