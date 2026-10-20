@@ -2,6 +2,6 @@
 
 Taken from https://github.com/mattpocock/skills, `skills/productivity/grilling`, plugin v1.3.1 (commit 5beb35b). MIT license, kept in `LICENSE` in this folder as the license requires.
 
-Edits in this copy: none.
+Edits in this copy: the round format uses a "Recommended:" label instead of emojis.
 
 This copy belongs to the heracles plugin and does not track upstream changes.
